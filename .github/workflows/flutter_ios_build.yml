@@ -13,13 +13,16 @@ jobs:
     runs-on: macos-latest  # Chạy trên môi trường macOS
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2  # Lấy mã nguồn từ kho chứa
 
     - name: Set up Flutter
       uses: subosito/flutter-action@v2  # Cài đặt Flutter
       with:
         flutter-version: '3.7.0'  # Cài đặt phiên bản Flutter bạn cần
+
+    - name: Check out repository
+      uses: actions/checkout@v2  # Lấy mã nguồn từ kho chứa
+
+    
 
     - name: Install dependencies
       run: |
