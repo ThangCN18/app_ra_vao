@@ -33,7 +33,7 @@ jobs:
         flutter build ios --release  # Xây dựng ứng dụng iOS ở chế độ release
 
     - name: Upload iOS build to Artifacts
-      uses: actions/upload-artifact@v2  # Tải lên tệp build
+      uses: actions/upload-artifact@v4  # Tải lên tệp build
       with:
         name: ios-build
         path: build/ios/iphoneos/Runner.app  # Đường dẫn tới ứng dụng iOS đã build
