@@ -20,7 +20,7 @@ jobs:
         flutter-version: '3.7.0'  # Cài đặt phiên bản Flutter bạn cần
 
     - name: Check out repository
-      uses: actions/checkout@v2  # Lấy mã nguồn từ kho chứa
+      uses: actions/checkout@v4  # Lấy mã nguồn từ kho chứa
 
     
 
