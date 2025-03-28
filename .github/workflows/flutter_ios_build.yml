@@ -1,0 +1,42 @@
+name: Flutter iOS Build
+
+on:
+  push:
+    branches:
+      - main  # Chạy khi có push lên nhánh main
+  pull_request:
+    branches:
+      - main  # Chạy khi có pull request vào nhánh main
+
+jobs:
+  build:
+    runs-on: macos-latest  # Chạy trên môi trường macOS
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2  # Lấy mã nguồn từ kho chứa
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2  # Cài đặt Flutter
+      with:
+        flutter-version: '3.7.0'  # Cài đặt phiên bản Flutter bạn cần
+
+    - name: Install dependencies
+      run: |
+        flutter pub get  # Cài đặt các dependencies Flutter
+
+    - name: Build iOS app
+      run: |
+        flutter build ios --release  # Xây dựng ứng dụng iOS ở chế độ release
+
+    - name: Upload iOS build to Artifacts
+      uses: actions/upload-artifact@v2  # Tải lên tệp build
+      with:
+        name: ios-build
+        path: build/ios/iphoneos/Runner.app  # Đường dẫn tới ứng dụng iOS đã build
+
+    # Nếu bạn muốn phát hành lên App Store (TestFlight), có thể sử dụng Fastlane
+    - name: Run Fastlane (optional)
+      run: |
+        cd ios
+        bundle exec fastlane beta  # Nếu có Fastlane setup, sử dụng để phát hành lên TestFlight
